@@ -1,0 +1,13 @@
+{
+  "host": "domain",
+  "port": 80,
+  "postgres": "postgres://username:password@host:5432/database",
+  "public": "../public/",
+  "auth": {
+    "idField": "id",
+    "token": {
+      "secret": "AUTH_SECRET"
+    },
+    "local": {}
+  }
+}
