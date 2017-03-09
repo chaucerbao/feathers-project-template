@@ -3,6 +3,7 @@
 // Dependencies
 const hooks = require('feathers-hooks')
 const auth = require('feathers-authentication').hooks
+const roles = require('../../role/hooks')
 
 // Before
 exports.before = {
@@ -10,13 +11,15 @@ exports.before = {
   find: [
     auth.verifyToken(),
     auth.populateUser(),
-    auth.restrictToAuthenticated()
+    auth.restrictToAuthenticated(),
+    roles.attach()
   ],
   get: [
     auth.verifyToken(),
     auth.populateUser(),
     auth.restrictToAuthenticated(),
-    auth.restrictToOwner({ ownerField: 'id' })
+    auth.restrictToOwner({ ownerField: 'id' }),
+    roles.attach()
   ],
   create: [auth.hashPassword()],
   update: [
