@@ -45,8 +45,8 @@ exports.after = {
   all: [hooks.remove('password')],
   find: [],
   get: [],
-  create: [],
-  update: [],
-  patch: [],
+  create: [roles.save()],
+  update: [roles.save()],
+  patch: [roles.save()],
   remove: []
 }

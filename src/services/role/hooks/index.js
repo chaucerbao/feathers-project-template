@@ -3,6 +3,7 @@
 // Dependencies
 const auth = require('feathers-authentication').hooks
 const attach = require('./attach').default
+const save = require('./save').default
 
 // Before
 exports.before = {
@@ -32,3 +33,4 @@ exports.after = {
 
 // Hooks
 exports.attach = attach
+exports.save = save
