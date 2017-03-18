@@ -4,6 +4,7 @@
 const Sequelize = require('sequelize')
 const authentication = require('./authentication')
 const role = require('./role')
+const tag = require('./tag')
 const user = require('./user')
 
 // Services
@@ -21,6 +22,7 @@ module.exports = function () {
   // Register the services
   app.configure(authentication)
   app.configure(role)
+  app.configure(tag)
   app.configure(user)
 
   // Associate related models
