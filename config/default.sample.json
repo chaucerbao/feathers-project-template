@@ -1,7 +1,7 @@
 {
   "host": "domain",
   "port": 80,
-  "postgres": "postgres://username:password@host:5432/database",
+  "database": "sqlite://:memory:",
   "public": "../public/",
   "auth": {
     "idField": "id",

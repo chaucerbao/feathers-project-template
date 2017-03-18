@@ -3,5 +3,6 @@ config/*.json
 
 node_modules/
 
+*.sqlite
 .DS_Store
 npm-debug.log
