@@ -25,10 +25,6 @@ module.exports = function (sequelize) {
             through: 'roles_users',
             timestamps: false
           })
-          users.belongsToMany(roles, {
-            through: 'roles_users',
-            timestamps: false
-          })
         }
       }
     }

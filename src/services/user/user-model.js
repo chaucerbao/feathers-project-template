@@ -22,7 +22,17 @@ module.exports = function (sequelize) {
       }
     },
     {
-      freezeTableName: true
+      freezeTableName: true,
+      classMethods: {
+        associate () {
+          const { roles, users } = sequelize.models
+
+          users.belongsToMany(roles, {
+            through: 'roles_users',
+            timestamps: false
+          })
+        }
+      }
     }
   )
 
