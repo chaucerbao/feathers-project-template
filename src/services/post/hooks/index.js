@@ -14,7 +14,7 @@ exports.before = {
   ],
   find: [],
   get: [],
-  create: [],
+  create: [auth.associateCurrentUser()],
   update: [],
   patch: [],
   remove: []
