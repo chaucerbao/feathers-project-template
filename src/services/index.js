@@ -3,6 +3,7 @@
 // Dependencies
 const Sequelize = require('sequelize')
 const authentication = require('./authentication')
+const post = require('./post')
 const role = require('./role')
 const tag = require('./tag')
 const user = require('./user')
@@ -21,6 +22,7 @@ module.exports = function () {
 
   // Register the services
   app.configure(authentication)
+  app.configure(post)
   app.configure(role)
   app.configure(tag)
   app.configure(user)

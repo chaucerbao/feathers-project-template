@@ -2,15 +2,15 @@
 
 // Dependencies
 const auth = require('feathers-authentication').hooks
-const attach = require('./attach').default
-const save = require('./save').default
+const tags = require('../../tag/hooks')
 
 // Before
 exports.before = {
   all: [
     auth.verifyToken(),
     auth.populateUser(),
-    auth.restrictToAuthenticated()
+    auth.restrictToAuthenticated(),
+    tags.attach()
   ],
   find: [],
   get: [],
@@ -25,12 +25,8 @@ exports.after = {
   all: [],
   find: [],
   get: [],
-  create: [],
-  update: [],
-  patch: [],
+  create: [tags.save()],
+  update: [tags.save()],
+  patch: [tags.save()],
   remove: []
 }
-
-// Hooks
-exports.attach = attach
-exports.save = save

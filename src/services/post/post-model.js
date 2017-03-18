@@ -5,33 +5,39 @@ const Sequelize = require('sequelize')
 
 // Model
 module.exports = function (sequelize) {
-  const tag = sequelize.define(
-    'tags',
+  const post = sequelize.define(
+    'posts',
     {
-      name: {
+      title: {
         type: Sequelize.STRING,
-        allowNull: false,
-        unique: true
+        allowNull: false
+      },
+      body: {
+        type: Sequelize.TEXT,
+        allowNull: false
       }
     },
     {
       freezeTableName: true,
-      timestamps: false,
       classMethods: {
         associate () {
           const { taggables, tags, posts } = sequelize.models
 
-          tags.belongsToMany(posts, {
+          posts.belongsToMany(tags, {
             through: {
               model: taggables,
-              unique: false
+              unique: false,
+              scope: {
+                taggable: 'post'
+              }
             },
-            foreignKey: 'tag_id'
+            foreignKey: 'taggable_id',
+            constraints: false
           })
         }
       }
     }
   )
 
-  return tag
+  return post
 }
