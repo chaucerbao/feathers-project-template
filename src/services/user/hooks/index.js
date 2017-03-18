@@ -7,37 +7,18 @@ const roles = require('../../role/hooks')
 
 // Before
 exports.before = {
-  all: [roles.attach()],
-  find: [
-    auth.verifyToken(),
-    auth.populateUser(),
-    auth.restrictToAuthenticated()
-  ],
-  get: [
+  all: [
     auth.verifyToken(),
     auth.populateUser(),
     auth.restrictToAuthenticated(),
-    auth.restrictToOwner({ ownerField: 'id' })
+    roles.attach()
   ],
+  find: [],
+  get: [],
   create: [auth.hashPassword()],
-  update: [
-    auth.verifyToken(),
-    auth.populateUser(),
-    auth.restrictToAuthenticated(),
-    auth.restrictToOwner({ ownerField: 'id' })
-  ],
-  patch: [
-    auth.verifyToken(),
-    auth.populateUser(),
-    auth.restrictToAuthenticated(),
-    auth.restrictToOwner({ ownerField: 'id' })
-  ],
-  remove: [
-    auth.verifyToken(),
-    auth.populateUser(),
-    auth.restrictToAuthenticated(),
-    auth.restrictToOwner({ ownerField: 'id' })
-  ]
+  update: [auth.hashPassword()],
+  patch: [auth.hashPassword()],
+  remove: []
 }
 
 // After
