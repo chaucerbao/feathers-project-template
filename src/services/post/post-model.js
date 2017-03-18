@@ -21,7 +21,7 @@ module.exports = function (sequelize) {
       freezeTableName: true,
       classMethods: {
         associate () {
-          const { taggables, tags, posts } = sequelize.models
+          const { posts, taggables, tags, users } = sequelize.models
 
           posts.belongsToMany(tags, {
             through: {
@@ -34,6 +34,8 @@ module.exports = function (sequelize) {
             foreignKey: 'taggable_id',
             constraints: false
           })
+
+          posts.belongsTo(users)
         }
       }
     }

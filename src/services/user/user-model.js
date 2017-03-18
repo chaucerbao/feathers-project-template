@@ -25,12 +25,14 @@ module.exports = function (sequelize) {
       freezeTableName: true,
       classMethods: {
         associate () {
-          const { roles, users } = sequelize.models
+          const { users, posts, roles } = sequelize.models
 
           users.belongsToMany(roles, {
             through: 'roles_users',
             timestamps: false
           })
+
+          users.hasMany(posts)
         }
       }
     }
